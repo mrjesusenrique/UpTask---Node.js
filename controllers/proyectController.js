@@ -15,7 +15,8 @@ const controller = {
     },
 
     proyectEnviarNuevoProyecto: (req, resp) => {
-        resp.send('Has guardado un nuevo proyecto');
+        console.log(req.body);
+        resp.end();
     },
 };
 
