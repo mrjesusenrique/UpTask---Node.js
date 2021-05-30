@@ -13,6 +13,10 @@ const controller = {
             nombrePagina: 'UpTask - Nuevo Proyecto'
         });
     },
+
+    proyectEnviarNuevoProyecto: (req, resp) => {
+        resp.send('Has guardado un nuevo proyecto');
+    },
 };
 
 module.exports = controller;

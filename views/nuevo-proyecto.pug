@@ -3,3 +3,11 @@ extends layout
 block content 
     div.contenido-principal
         h1 #{nombrePagina}
+
+        form.agregar-proyecto(action="/nuevo-proyecto" method="POST")
+            div.campo
+                label(for="nombre") Nombre Proyecto
+                input#nombre(type="text" name="nombre" placeholder="Nombre del Proyecto") 
+
+            div.campo.enviar
+                input.boton(type="submit" value="Agregar") 
