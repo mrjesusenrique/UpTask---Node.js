@@ -7,6 +7,12 @@ const controller = {
             nombrePagina: 'UpTask - Proyectos'
         });
     },
+
+    proyectNuevoProyecto: (req, resp) => {
+        resp.render('nuevo-proyecto', {
+            nombrePagina: 'UpTask - Nuevo Proyecto'
+        });
+    },
 };
 
 module.exports = controller;
