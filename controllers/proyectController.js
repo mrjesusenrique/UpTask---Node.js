@@ -15,8 +15,22 @@ const controller = {
     },
 
     proyectEnviarNuevoProyecto: (req, resp) => {
-        console.log(req.body);
-        resp.end();
+        const { nombre } = req.body;
+        let errores = [];
+
+        if (!nombre) {
+            errores.push({ 'texto': 'Agrega un nombre al Proyecto' });
+        }
+
+        if (errores.length > 0) {
+            resp.render('nuevo-proyecto', {
+                nombrePagina: 'UpTask - Nuevo Proyecto',
+                errores
+            });
+
+        } else {
+            // Insertar información en la Base de Datos
+        };
     },
 };
 
