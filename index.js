@@ -3,8 +3,14 @@
 const express = require('express');
 const path = require('path');
 const routes = require('./routes');
+const db = require('./config/db');
 const app = express();
 const port = 3000;
+
+require('./models/Proyectos');
+db.sync()
+    .then(() => ('Conectado a la Base de Datos'))
+    .catch((error) => console.log(error));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
