@@ -9,7 +9,7 @@ module.exports = function () {
     router.get('/', proyectController.proyectHome);
     router.get('/nuevo-proyecto', proyectController.proyectNuevoProyecto);
     router.post('/nuevo-proyecto',
-        body('nombre').not().isEmpty().trim().escape(),
+        body('nombre').not().isEmpty().trim().escape().isLength({ min: 3, max: 255 }).isString(),
         proyectController.proyectGuardarNuevoProyecto);
     return router;
 };
