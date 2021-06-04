@@ -11,6 +11,7 @@ module.exports = function () {
     router.post('/nuevo-proyecto',
         body('nombre').not().isEmpty().trim().escape().isLength({ min: 3, max: 255 }).isString(),
         proyectController.proyectGuardarNuevoProyecto);
+    router.get('/proyectos/:url', proyectController.proyectoPorUrl);
     return router;
 };
 

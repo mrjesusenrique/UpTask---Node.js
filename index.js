@@ -7,9 +7,15 @@ const db = require('./config/db');
 require('./models/Proyectos.js');
 const app = express();
 const port = 3000;
+const helpers = require('./helpers');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
+
+app.use((req, resp, next) => {
+    resp.locals.vardump = helpers.vardump;
+    next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
