@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const proyectController = require('../controllers/proyectController');
-const { body } = require('express-validator/check');
+const { body } = require('express-validator');
 
 module.exports = function () {
     router.get('/', proyectController.proyectHome);

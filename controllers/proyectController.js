@@ -17,7 +17,6 @@ exports.proyectNuevoProyecto = (req, resp) => {
 exports.proyectGuardarNuevoProyecto = async (req, resp) => {
 
     const { nombre } = req.body;
-    console.log(req.body);
 
     let errores = [];
 
