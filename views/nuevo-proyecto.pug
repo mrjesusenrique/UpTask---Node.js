@@ -1,4 +1,5 @@
 extends layout
+include mixins/crearProyecto
 
 block content 
     div.contenido-principal
@@ -6,12 +7,7 @@ block content
 
         if errores
             each error in errores
-                div.alerta=error.texto 
+                div.alerta=error.texto
+        +crearProyecto(proyecto)
 
-        form.agregar-proyecto(action="/nuevo-proyecto" method="POST")
-            div.campo
-                label(for="nombre") Nombre Proyecto
-                input#nombre(type="text" name="nombre" placeholder="Nombre del Proyecto") 
-
-            div.campo.enviar
-                input.boton(type="submit" value="Agregar") 
+         
