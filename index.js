@@ -5,6 +5,7 @@ const path = require('path');
 const routes = require('./routes');
 const db = require('./config/db');
 require('./models/Proyectos.js');
+require('./models/Tareas.js');
 const app = express();
 const port = 3000;
 const helpers = require('./helpers');
