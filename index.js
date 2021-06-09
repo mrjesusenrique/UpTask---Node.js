@@ -6,6 +6,7 @@ const routes = require('./routes');
 const db = require('./config/db');
 require('./models/Proyectos.js');
 require('./models/Tareas.js');
+require('./models/Usuarios.js');
 const app = express();
 const port = 3000;
 const helpers = require('./helpers');

@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const proyectController = require('../controllers/proyectController');
 const tareasController = require('../controllers/tareasController');
+const usuariosController = require('../controllers/usuariosController');
 const { body } = require('express-validator');
 
 module.exports = function () {
@@ -30,6 +31,10 @@ module.exports = function () {
     router.patch('/tareas/:id', tareasController.cambiarEstadoTarea);
 
     router.delete('/tareas/:id', tareasController.eliminarTarea);
+
+    router.get('/crear-cuenta', usuariosController.formCrearCuenta);
+
+    //router.post('/crear-cuenta', usuariosController.crearCuenta);
 
     return router;
 };
