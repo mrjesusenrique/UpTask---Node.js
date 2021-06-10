@@ -1,7 +1,31 @@
 'use strict'
 
+const Usuarios = require('../models/Usuarios');
+
 exports.formCrearCuenta = (req, resp) => {
     resp.render('crearCuenta', {
         nombrePagina: 'Crear cuenta en UpTask'
     });
+};
+
+exports.crearCuenta = async (req, resp) => {
+
+    const { email, password } = req.body;
+
+    try {
+        await Usuarios.create({
+            email,
+            password
+        })
+        resp.redirect('/iniciar-sesion');
+
+    } catch (error) {
+        req.flash('error', error.errors.map(error => error.message));
+        resp.render('crearCuenta', {
+            nombrePagina: 'Crear cuenta en UpTask',
+            mensajes: req.flash(),
+            email,
+            password
+        });
+    };
 };

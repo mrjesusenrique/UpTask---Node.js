@@ -10,12 +10,26 @@ require('./models/Usuarios.js');
 const app = express();
 const port = 3000;
 const helpers = require('./helpers');
+const flash = require('connect-flash');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
 
+app.use(flash());
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: 'supersecreto',
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use((req, resp, next) => {
     resp.locals.vardump = helpers.vardump;
+    resp.locals.mensajes = req.flash();
     next();
 });
 
