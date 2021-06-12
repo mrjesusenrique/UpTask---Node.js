@@ -8,6 +8,12 @@ exports.formCrearCuenta = (req, resp) => {
     });
 };
 
+exports.formIniciarSesion = (req, resp) => {
+    resp.render('iniciarSesion', {
+        nombrePagina: 'Iniciar Sesión en UpTask'
+    });
+};
+
 exports.crearCuenta = async (req, resp) => {
 
     const { email, password } = req.body;

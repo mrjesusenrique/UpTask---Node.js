@@ -36,6 +36,8 @@ module.exports = function () {
 
     router.post('/crear-cuenta', usuariosController.crearCuenta);
 
+    router.get('/iniciar-sesion', usuariosController.formIniciarSesion);
+    
     return router;
 };
 

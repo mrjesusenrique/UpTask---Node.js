@@ -13,6 +13,7 @@ const helpers = require('./helpers');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const passport = require('./config/passport');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
@@ -26,6 +27,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, resp, next) => {
     resp.locals.vardump = helpers.vardump;
