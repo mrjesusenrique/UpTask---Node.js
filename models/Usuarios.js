@@ -37,15 +37,16 @@ const Usuarios = db.define('usuarios', {
             }
         }
     }
-}, {
-    hooks: {
-        beforeCreate(usuario) {
-            usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10));
+},
+    {
+        hooks: {
+            beforeCreate(usuario) {
+                usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10));
+            }
         }
-    }
-});
+    });
 
-Usuarios.prototype.verificarPassword = (password) => {
+Usuarios.prototype.verificarPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 

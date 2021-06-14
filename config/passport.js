@@ -1,3 +1,5 @@
+'use strict'
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const Usuarios = require('../models/Usuarios');
@@ -5,27 +7,28 @@ const Usuarios = require('../models/Usuarios');
 passport.use(
     new LocalStrategy(
         {
-            user: 'email',
-            password: 'password'
+            usernameField: 'email',
+            passwordField: 'password'
         },
-
         async (email, password, done) => {
             try {
-                const usuario = await Usuarios.find({
-                    where: { email: email }
+                const usuario = await Usuarios.findOne({
+                    where: {
+                        email
+                    }
                 });
 
                 if (!usuario.verificarPassword(password)) {
                     return done(null, false, {
-                        message: 'Password incorrecto'
+                        message: 'Password Incorrecto'
                     });
                 };
 
                 return done(null, usuario);
-
             } catch (error) {
+
                 return done(null, false, {
-                    message: 'El email no existe'
+                    message: 'Esa cuenta no existe'
                 });
             };
         }

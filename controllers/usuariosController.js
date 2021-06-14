@@ -8,12 +8,6 @@ exports.formCrearCuenta = (req, resp) => {
     });
 };
 
-exports.formIniciarSesion = (req, resp) => {
-    resp.render('iniciarSesion', {
-        nombrePagina: 'Iniciar Sesión en UpTask'
-    });
-};
-
 exports.crearCuenta = async (req, resp) => {
 
     const { email, password } = req.body;
@@ -22,7 +16,8 @@ exports.crearCuenta = async (req, resp) => {
         await Usuarios.create({
             email,
             password
-        })
+        });
+
         resp.redirect('/iniciar-sesion');
 
     } catch (error) {
@@ -34,4 +29,14 @@ exports.crearCuenta = async (req, resp) => {
             password
         });
     };
+};
+
+exports.formIniciarSesion = (req, resp) => {
+    console.log(resp.locals.mensajes);
+
+    const { error } = resp.locals.mensajes;
+    resp.render('iniciarSesion', {
+        nombrePagina: 'Iniciar Sesión en UpTask',
+        error
+    });
 };
