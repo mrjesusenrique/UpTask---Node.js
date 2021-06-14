@@ -14,6 +14,7 @@ const port = 3000;
 require('./models/Proyectos.js');
 require('./models/Tareas.js');
 require('./models/Usuarios.js');
+require('./handlers/email');
 
 db.sync()
     .then(() => console.log('Conectado al Servidor'))

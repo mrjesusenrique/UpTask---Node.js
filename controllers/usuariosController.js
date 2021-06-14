@@ -38,3 +38,9 @@ exports.formIniciarSesion = (req, resp) => {
         error
     });
 };
+
+exports.formRestablecerPassword = (req, resp) => {
+    resp.render('restablecer', {
+        nombrePagina: 'Restablecer contraseña'
+    });
+};
