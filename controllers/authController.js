@@ -9,3 +9,13 @@ exports.autenticarUsuario = passport.authenticate('local', {
     badRequestMessage: 'Los campos son obligatorios'
 });
 
+exports.usuarioAutenticado = (req, resp, next) => {
+    req.isAuthenticated() ? next() : resp.redirect('/iniciar-sesion');
+};
+
+exports.cerrarSesion = (req, resp) => {
+    req.session.destroy(() => {
+        resp.redirect('/iniciar-sesion');
+    });
+};
+

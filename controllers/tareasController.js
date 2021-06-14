@@ -44,10 +44,7 @@ exports.eliminarTarea = async (req, resp) => {
 
     const resultado = await Tareas.destroy({ where: { id } });
 
-    if (!resultado) {
-        return next();
-    };
+    !resultado && next();
 
     resp.send('Tarea eliminada correctamente');
-
 };

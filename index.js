@@ -5,7 +5,6 @@ const path = require('path');
 const routes = require('./routes');
 const db = require('./config/db');
 const helpers = require('./helpers');
-const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -40,6 +39,7 @@ app.use(passport.session());
 app.use((req, resp, next) => {
     resp.locals.mensajes = req.flash();
     resp.locals.vardump = helpers.vardump;
+    resp.locals.usuario = { ...req.user } || null;
     next();
 });
 
