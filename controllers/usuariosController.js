@@ -1,6 +1,7 @@
 'use strict'
 
 const Usuarios = require('../models/Usuarios');
+const enviarEmail = require('../handlers/email');
 
 exports.formCrearCuenta = (req, resp) => {
     resp.render('crearCuenta', {
@@ -18,6 +19,20 @@ exports.crearCuenta = async (req, resp) => {
             password
         });
 
+        const confirmarUrl = `http://${req.headers.host}/confirmar/${email}`;
+
+        const usuario = {
+            email
+        };
+
+        await enviarEmail.enviar({
+            usuario,
+            subject: 'Confirma tu cuenta en UpTask',
+            confirmarUrl,
+            archivo: 'confirmar-cuenta'
+        });
+
+        req.flash('correcto', 'Se envió un correo para confirmar tu cuenta');
         resp.redirect('/iniciar-sesion');
 
     } catch (error) {
@@ -43,4 +58,26 @@ exports.formRestablecerPassword = (req, resp) => {
     resp.render('restablecer', {
         nombrePagina: 'Restablecer contraseña'
     });
+};
+
+exports.confirmarCuenta = async (req, resp) => {
+
+    const { correo } = req.params;
+
+    const usuario = await Usuarios.findOne({
+        where: {
+            email: correo
+        }
+    });
+
+    if (!usuario) {
+        req.flash('error', 'No válido');
+        resp.redirect('/crear-cuenta');
+    } else {
+        usuario.activo = 1;
+        await usuario.save();
+
+        req.flash('correcto', 'Cuenta activada correctamente');
+        resp.redirect('/iniciar-sesion');
+    };
 };
