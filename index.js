@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
 const app = express();
 const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || '0.0.0.0';
 require('./models/Proyectos.js');
 require('./models/Tareas.js');
 require('./models/Usuarios.js');
