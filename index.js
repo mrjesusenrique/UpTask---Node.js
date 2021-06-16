@@ -50,7 +50,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', routes());
 
 app.listen(PORT, HOST, () => {
-    console.log(`API REST escuchando en el puerto ${port}`);
+    console.log(`API REST escuchando en el puerto ${PORT}`);
 });
 
 
