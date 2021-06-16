@@ -10,8 +10,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('./config/passport');
 const app = express();
-const host = process.env.HOST || '0.0.0.0';
-const port = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
 require('./models/Proyectos.js');
 require('./models/Tareas.js');
 require('./models/Usuarios.js');
@@ -49,7 +49,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', routes());
 
-app.listen(port, host, () => {
+app.listen(PORT, HOST, () => {
     console.log(`API REST escuchando en el puerto ${port}`);
 });
 
