@@ -14,8 +14,6 @@ require('./models/Proyectos.js');
 require('./models/Tareas.js');
 require('./models/Usuarios.js');
 require('dotenv').config({ path: 'variables.env' });
-const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PORT || 3306;
 
 db.sync()
     .then(() => console.log('Conectado al Servidor'))
@@ -48,6 +46,9 @@ app.use((req, resp, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', routes());
+
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3306;
 
 app.listen(PORT, HOST, () => {
     console.log(`API REST escuchando en el puerto ${PORT}`);
